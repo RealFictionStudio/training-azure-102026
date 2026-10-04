@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-    paths: 'nodejs-microservices/packages/website/**'
+    paths: 
+      - 'nodejs-microservices/packages/website/**'
+      - '.github/workflows/ryba-gateway-cicd-AutoDeployTrigger-799c2267-e7ea-420f-b1c8-61b7697213ca.yml'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
