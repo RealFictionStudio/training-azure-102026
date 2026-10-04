@@ -46,7 +46,7 @@ jobs:
           imageToBuild: aquariumkc-h5hqd7gsfwdnf4c5.azurecr.io/ryba-gateway-cicd:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
-          envinronmentVariables: >
+          environmentVariables: >
             SETTINGS_API_URL=https://ryba-settings-cicd.happyriver-c3b70016.westus2.azurecontainerapps.io
             DICE_API_URL=https://ryba-dice-cicd.happyriver-c3b70016.westus2.azurecontainerapps.io
 
