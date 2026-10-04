@@ -7,7 +7,7 @@ on:
     branches: 
       [ main ]
     paths:
-    - '**'
+    - 'nodejs-microservices/packages/settings-api/**'
     - '.github/workflows/ryba-settings-cicd-AutoDeployTrigger-e03c4ece-a2e9-479a-a23f-d42d0a601a3f.yml'
 
   # Allow manual trigger 
@@ -34,12 +34,13 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
-          appSourcePath: ${{ github.workspace }}
+          appSourcePath: ${{ github.workspace }}/nodejs-microservices
+          dockerfilePath: packages/settings-api/Dockerfile
           _dockerfilePathKey_: _dockerfilePath_
           _targetLabelKey_: _targetLabel_
-          registryUrl: 
-          registryUsername: ${{ secrets.RYBASETTINGSCICD_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.RYBASETTINGSCICD_REGISTRY_PASSWORD }}
+          registryUrl: aquariumkc-h5hqd7gsfwdnf4c5.azurecr.io
+          registryUsername: ${{ secrets.RYBAGATEWAYCICD_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.RYBAGATEWAYCICD_REGISTRY_PASSWORD }}
           containerAppName: ryba-settings-cicd
           resourceGroup: fishy-group
           imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
