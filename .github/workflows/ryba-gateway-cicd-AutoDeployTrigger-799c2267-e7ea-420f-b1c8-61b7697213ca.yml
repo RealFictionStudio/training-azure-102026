@@ -43,7 +43,7 @@ jobs:
           registryPassword: ${{ secrets.RYBAGATEWAYCICD_REGISTRY_PASSWORD }}
           containerAppName: ryba-gateway-cicd
           resourceGroup: fishy-group
-          imageToBuild: default/ryba-gateway-cicd:${{ github.sha }}
+          imageToBuild: aquariumkc-h5hqd7gsfwdnf4c5.azurecr.io/ryba-gateway-cicd:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
 
