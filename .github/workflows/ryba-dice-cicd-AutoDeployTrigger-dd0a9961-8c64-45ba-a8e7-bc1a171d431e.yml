@@ -7,7 +7,7 @@ on:
     branches: 
       [ main ]
     paths:
-    - '**'
+    - 'nodejs-microservices/packages/dice-api/**'
     - '.github/workflows/ryba-dice-cicd-AutoDeployTrigger-dd0a9961-8c64-45ba-a8e7-bc1a171d431e.yml'
 
   # Allow manual trigger 
@@ -34,15 +34,16 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
-          appSourcePath: ${{ github.workspace }}
+          appSourcePath: ${{ github.workspace }}/nodejs-microservices
+          dockerfilePath: packages/dice-api/Dockerfile
           _dockerfilePathKey_: _dockerfilePath_
           _targetLabelKey_: _targetLabel_
-          registryUrl: 
-          registryUsername: ${{ secrets.RYBADICECICD_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.RYBADICECICD_REGISTRY_PASSWORD }}
+          registryUrl: aquariumkc-h5hqd7gsfwdnf4c5.azurecr.io
+          registryUsername: ${{ secrets.RYBAGATEWAYCICD_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.RYBAGATEWAYCICD_REGISTRY_PASSWORD }}
           containerAppName: ryba-dice-cicd
           resourceGroup: fishy-group
-          imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
+          imageToBuild: aquariumkc-h5hqd7gsfwdnf4c5.azurecr.io/ryba-dice-cicd:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
 
